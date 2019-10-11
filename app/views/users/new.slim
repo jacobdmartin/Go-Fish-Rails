@@ -1,0 +1,11 @@
+- provide(:title, "Sign Up/Log In")
+h1 Sign Up
+h3 Or Log In
+= form_for(@user) do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :password
+  = f.text_field :password
+
+  = f.submit "Sign Up", class: "btn btn-primary"

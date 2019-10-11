@@ -15,3 +15,7 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+// Polyfills per docs: https://github.com/rails/webpacker/blob/master/docs/es6.md#babel
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
