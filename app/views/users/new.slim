@@ -1,13 +1,16 @@
 - provide(:title, "Sign Up/Log In")
 h1 Sign Up
 h3 Or Log In
-= form_for(@user, url: signup_path) do |f|
-  = render 'shared/error_messages'
 
-  = f.label :name
-  = f.text_field :name
+body 
+  = form_for(@user) do |f|
+    / == render 'shared/error_messages'
+    / , url: signup_path
 
-  = f.label :password
-  = f.text_field :password
+    = f.label :name
+    = f.text_field :name
 
-  = f.submit "Sign Up", class: "btn btn-primary"
+    = f.label :password
+    = f.text_field :password
+
+    = f.submit "Sign Up", class: "btn btn-primary"
