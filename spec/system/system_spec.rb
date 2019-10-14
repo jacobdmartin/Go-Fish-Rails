@@ -18,7 +18,7 @@ RSpec.describe 'Sign Up', type: :system do
   end
 
   it 'allows an existing user to login' do
-    existing_user = create(:user, name: 'Caleb')
+    existing_user = create(:user, name: 'Caleb', password: "evenIfUd0n't")
     visit '/'
 
     expect {

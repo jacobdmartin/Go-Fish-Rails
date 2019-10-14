@@ -1,7 +1,9 @@
 - provide(:title, "Sign Up/Log In")
 h1 Sign Up
 h3 Or Log In
-= form_for(@user) do |f|
+= form_for(@user, url: signup_path) do |f|
+  = render 'shared/error_messages'
+
   = f.label :name
   = f.text_field :name
 
