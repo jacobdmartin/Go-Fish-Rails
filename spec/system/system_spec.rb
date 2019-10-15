@@ -7,35 +7,28 @@ RSpec.describe 'Sign Up', type: :system do
 
   it 'allows a new user to sign up' do
     visit '/'
-
     expect {
       fill_in 'Name', with: 'Caleb'
       fill_in 'Password', with: "evenIfUd0n't"
       click_on 'Sign Up'
     }.to change(User, :count).by(1)
-
-    expect(page).to have_content 'Pending Games'
+    expect(page.body).to have_content 'Pending Games'
   end
 
   it 'allows an existing user to login' do
     existing_user = create(:user, name: 'Caleb', password: "evenIfUd0n't")
     visit '/'
-
     expect {
       fill_in 'Name', with: 'Caleb'
       fill_in 'Password', with: "evenIfUd0n't"
       click_on 'Sign Up'
-    }.not_to change(User, :count)
-
-    expect(page).to have_content 'Pending Games'
+    }.to_not change(User, :count)
+    expect(page.body).to have_content('Pending Games')
   end
 
   it 'prevents login for blank name' do
     visit '/'
-
-    # don't fill in name
     click_on 'Sign Up'
-
     expect(page).to have_content 'error'
   end
 end

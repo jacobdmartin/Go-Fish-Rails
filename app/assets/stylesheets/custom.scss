@@ -4,6 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$yellow: #ffda55;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -83,7 +84,7 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
+  color: $yellow;
   a {
     color: $gray;
     &:hover {

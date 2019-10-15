@@ -1,0 +1,141 @@
+.btn__start {
+  justify-content: center;
+}
+
+.cpu-num-btn {
+  margin: auto;
+}
+
+.choice-btn {
+  position: relative;
+  margin-top: 35px;
+}
+
+.start--text {
+  color: white;
+  margin: auto;
+  bottom: 0;
+  left: 110px;
+  font-size: 20px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content p {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.hand-button {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.book-button {
+  width: 130px;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 19px;
+  box-shadow: 3px 3px 4px rgb(34, 34, 34)
+}
+
+.button {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 1em;
+  padding: 10px;
+  color: #00bf63;
+  border: 2px solid #ffda55;
+  background: #553d03;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #855f07;
+}
+
+.card-btn {
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  box-shadow: 3px 3px 4px rgb(34, 34, 34);
+  border: 1px black solid;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-btn:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+.card-list-item {
+  text-align: center;
+}
+
+.player-btn {
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgb(148, 133, 133);
+  box-shadow: 3px 3px 4px rgb(34, 34, 34);
+  border: 1px black solid;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-btn:hover {
+  background-color: rgb(121, 106, 106);
+}
+
+.ask-btn {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #d7b747;
+  font-size: 20px;
+  box-shadow: 3px 3px 4px rgb(34, 34, 34);
+  border: 1px black solid;
+}
+
+.ask-btn:hover {
+  background-color: #ffda55;
+}
+
+.btn {
+  width: 300px;
+  border-radius: 5px;
+  height: 50px;
+  margin-top: 15px;
+  background-color: #553d03;
+  box-shadow: 3px 3px 4px rgb(34, 34, 34)
+}
+
+.btn-small {
+  width: 100px;
+  border-radius: 5px;
+  align-self: center;
+  height: 50px;
+  margin-top: 15px;
+  position: relative;
+}

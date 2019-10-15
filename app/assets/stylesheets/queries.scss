@@ -1,0 +1,30 @@
+@media screen and (max-width: 900px) {
+  .your-hand-column {
+    flex-direction: row;
+  }
+
+  .your-matches-column {
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card_image {
+    max-width: 20%;
+    margin-left: -17px;
+    overflow: auto;
+  }
+
+  .player__box {
+    width: 100px;
+    margin-top: 5px;
+    height: 40px;
+  }
+
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}

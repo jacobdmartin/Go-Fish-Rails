@@ -1,9 +1,9 @@
-- provide(:title, "Sign Up/Log In")
-h1 Sign Up
-h3 Or Log In
+- provide(:title, "Account")
+h1.welcome Create Account
+h2 Or Log In
 
 body 
-  = form_for(@user) do |f|
+  = form_for(:session, url: login_path) do |f|
     / == render 'shared/error_messages'
     / , url: signup_path
 

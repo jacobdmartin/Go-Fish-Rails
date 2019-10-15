@@ -1,0 +1,34 @@
+.form__entry {
+  position: relative;
+  border-radius: 5px;
+  width: 200px;
+  background-color: #ffda55;
+  box-shadow: 3px 3px 4px rgb(34, 34, 34)
+}
+
+.cpu-form {
+  margin: auto;
+  margin-top: 50px;
+}
+
+.form__entry--cpu-number {
+  margin: auto;
+  padding: 15px 55px 15px 55px;
+  font-size: 18px;
+}
+
+.form__entry--cpu-number:hover {
+  background-color: #e0c04a;
+}
+
+.player__box {
+  width: 170px;
+  border-radius: 5px;
+  align-self: left;
+  height: 50px;
+  margin-top: 15px;
+  position: relative;
+  background-color: white;
+  align-content: center;
+  box-shadow: 3px 3px 4px rgb(34, 34, 34)
+}

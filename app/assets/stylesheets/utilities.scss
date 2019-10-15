@@ -1,0 +1,112 @@
+.flex {display: flex;}
+
+.flex-row {flex-direction: row;}
+
+.flex-column {flex-direction: column;}
+
+.flex-start {justify-content: flex-start;}
+
+.flex-end {justify-content: flex-end;}
+
+.justify-around {justify-content: space-around;}
+
+.justify-between {justify-content: space-between}
+
+.justify-center {justify-content: center;}
+
+.justify-right {justify-content: right;}
+
+.justify-left {justify-content: left;}
+
+.items-stretch {align-items: stretch;}
+
+body {
+  background-color: #008042;
+  height: calc(100% - 80px);
+  width: auto;
+  margin: auto;
+  font: 12pt Helvetica, sans-serif;
+  background-image: url(https://www.worshipwoodworks.com/app/uploads/2013/12/p-5797-580.09-2.jpg);
+  overflow: scroll;
+}
+
+container {
+  display: flex;
+}
+
+.room-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+
+.page {
+  height: calc(100% - 80px);
+  overflow: scroll;
+}
+
+.card-pile {
+  max-width: 150px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.deck-stats {
+  background: white;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.stats {
+  width: 150px;
+  height: 170px;
+  background-color: #553d03;
+  color: white;
+  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  box-shadow: 4px 4px 4px rgb(34, 34, 34);
+}
+
+.your-hand-column {
+  width: 100%;
+  background-color: black;
+  justify-content: center;
+}
+
+.your-matches-column {
+  width: 100%;
+  background-color: white;
+}
+
+.your-matches {
+  overflow: scroll;
+}
+
+.your-no-matches-column {
+  width: 100%;
+  background-color: white;
+  bottom: 0;
+}
+
+.personal-stats {
+  margin-top: 10px;
+}
+
+.card-box {
+  margin-top: 30px;
+}
+
+.player-list {
+  width: 50%;
+  order: 0;
+}
+
+.taking-turn {
+  width: 50%;
+  order: 1;
+  font-size: 20px;
+  color: white;
+}
