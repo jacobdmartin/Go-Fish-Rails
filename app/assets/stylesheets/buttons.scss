@@ -122,15 +122,6 @@
   background-color: #ffda55;
 }
 
-.btn {
-  width: 300px;
-  border-radius: 5px;
-  height: 50px;
-  margin-top: 15px;
-  background-color: #553d03;
-  box-shadow: 3px 3px 4px rgb(34, 34, 34)
-}
-
 .btn-small {
   width: 100px;
   border-radius: 5px;
@@ -138,4 +129,14 @@
   height: 50px;
   margin-top: 15px;
   position: relative;
+}
+
+.btn-brown {
+  color: white;
+  background: #553d03;
+}
+
+.btn-yellow {
+  color: black;
+  background: #ffda55;
 }

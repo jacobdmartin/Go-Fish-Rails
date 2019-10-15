@@ -1,0 +1,18 @@
+- provide(:title, @user.name)
+body
+
+  .container
+    h1
+      = gravatar_for @user
+      = @user.name
+  .container
+    h4.stats-header Player Stats
+  .container.stats_container
+    .no_margin.row
+      p.list-stats Games Won: 0
+    .no_margin.row
+      p.list-stats Games Lost: 0
+    .no_margin.row
+      p.list-stats Percentage: 0%
+  .container
+    a(class="btn btn-yellow" href="/games#index") Go To Lobby

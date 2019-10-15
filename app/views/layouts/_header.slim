@@ -1,8 +1,18 @@
-header class="navbar navbar-fixed-top navbar-inverse enter-header"
+header class="navbar navbar-fixed-top enter-header"
   div class="container"
     = link_to "Welcome to Go Fish", root_path, id: "logo"
     nav
-      ul class="nav navbar-nav navbar-right"
-        li: a(href='/') Home
-        li: a(href='/help') Help
-        li: a(href= :root_path) Account
+      ul class="nav navbar-nav navbar-right text-yellow"
+        li: a(class="text-yellow" href='/') Home
+        li: a(class="text-yellow" href='/help') Help
+        - if logged_in?
+          li: a(class="text-yellow" href= :root_path) Users
+          li.dropdown
+            a(class="dropdown-toggle" href="#" data-toggle="dropdown")
+            ul.dropdown-menu
+              li: a(class="text-yellow" href='current_user') Profile
+              li: a(class="text-yellow" href='#') Settings
+              li.divider
+                a(class="text-yellow" href='logout_path' method: :delete) Log out
+        - else
+          li: a(class="text-yellow" href='login_path') Log In

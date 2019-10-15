@@ -1,0 +1,11 @@
+- provide(:title, "Create Game")
+
+body
+
+  h1 Create A Game
+  = form_for(@games, url: new_game_path) do |f|
+  
+    = f.label :name
+    = f.text_field :name
+
+    = f.submit "Create Game", class: "btn btn-primary"

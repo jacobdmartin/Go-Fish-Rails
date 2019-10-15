@@ -1,10 +1,14 @@
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 980px) {
   .your-hand-column {
     flex-direction: row;
   }
 
   .your-matches-column {
     flex-direction: row;
+  }
+
+  .welcome {
+    margin-top: 600px;
   }
 }
 

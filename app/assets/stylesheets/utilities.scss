@@ -20,6 +20,9 @@
 
 .items-stretch {align-items: stretch;}
 
+$gray-medium-light: #eaeaea;
+$yellow: #ffda55;
+
 body {
   background-color: #008042;
   height: calc(100% - 80px);
@@ -95,6 +98,23 @@ container {
   margin-top: 10px;
 }
 
+.stats_container {
+  background: rgba(0,0,0,0.45);
+}
+
+.stats-header {
+  background: $yellow;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10 20 10 20px;
+}
+
+.list-stats {
+  border-bottom: 1px solid black;
+  margin-top: 4px;
+  color: $yellow;
+}
+
 .card-box {
   margin-top: 30px;
 }
@@ -109,4 +129,9 @@ container {
   order: 1;
   font-size: 20px;
   color: white;
+}
+
+.no_margin {
+  margin-left: 0;
+  margin-right: 0;
 }

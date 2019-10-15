@@ -1,9 +1,9 @@
 - provide(:title, "Account")
 h1.welcome Create Account
-h2 Or Log In
 
-body 
-  = form_for(:session, url: login_path) do |f|
+body
+  / img class="card_picture" src="https://www.partyswizzle.com/assets/images/03Food/NapkinsCardSuits.jpg" alt="A Picture of Four Aces" 
+  = form_for(@user, url: signup_path) do |f|
     / == render 'shared/error_messages'
     / , url: signup_path
 
@@ -13,4 +13,9 @@ body
     = f.label :password
     = f.text_field :password
 
-    = f.submit "Sign Up", class: "btn btn-primary"
+    = f.label :confirm_password
+    = f.text_field :confirm_password
+
+    = f.submit "Sign Up", class: "btn btn-yellow"
+  p Already Have An Account?
+  a(class="btn btn-brown" href="login")Log In
