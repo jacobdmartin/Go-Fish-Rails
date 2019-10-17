@@ -1,4 +1,4 @@
-require_relative 'playing_card'
+require_relative '../../app/models/playing_card'
 
 RSpec.describe PlayingCard, type: :model do
 

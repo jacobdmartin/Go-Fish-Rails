@@ -1,4 +1,4 @@
-require_relative 'card_deck'
+require_relative '../../app/models/card_deck'
 
 RSpec.describe CardDeck, type: :model do
   describe '#shuffle' do

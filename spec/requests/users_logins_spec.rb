@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "UsersLogins", type: :request do
 
+  before do
+    config.include? Capybara::DSL
+  end
+
   def setup
     @user = users(:michael)
   end

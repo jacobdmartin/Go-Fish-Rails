@@ -3,12 +3,9 @@
 body
 
   h1 Create A Game
-  / = form_for(@game, url: new_game_path) do |f|
-  = form_with(model: GoFish.new) do |f|
+  = form_with(model: Game.new, url: games_path) do |f|
   
     = f.label :name
     = f.text_field :name
 
-    = f.submit "Create Game", games_path, class: "btn btn-primary"
-
-  / = form_with(model: GoFish.new) do |f|
+    = f.submit "Create Game", class: "btn btn-primary"

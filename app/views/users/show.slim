@@ -8,11 +8,11 @@ body
   .container
     h4.stats-header Player Stats
   .container.stats_container
-    .no_margin.row
+    .no_margin
       p.list-stats Games Won: 0
-    .no_margin.row
+    .no_margin
       p.list-stats Games Lost: 0
-    .no_margin.row
+    .no_margin
       p.list-stats Percentage: 0%
-  .container
+  .container.btn-lobby
     = link_to "Go To Lobby", games_url, class: "btn btn-yellow"

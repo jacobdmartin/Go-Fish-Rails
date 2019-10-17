@@ -1,11 +1,11 @@
-require_relative 'go_fish'
-require_relative 'player'
-require_relative 'playing_card'
+require_relative '../../app/models/go_fish'
+require_relative '../../app/models/player'
+require_relative '../../app/models/playing_card'
 
 
 RSpec.describe Player, type: :model do
-  let(:james) {Player.new("James")}
-  let(:grace) {Player.new("Grace")}
+  let(:audrey) {Player.new("Audrey")}
+  let(:jonathan) {Player.new("Jonathan")}
 
   let(:five_of_hearts) {PlayingCard.new("5", "Hearts")}
   let(:eight_of_diamonds) {PlayingCard.new("8", "Diamonds")}
@@ -17,8 +17,8 @@ RSpec.describe Player, type: :model do
   let(:game) {GoFish.new}
 
   def create_and_start_game
-    game.add_player(grace)
-    game.create_cpu(2)
+    game.add_player(audrey)
+    game.add_player(jonathan)
     game.start
   end
 

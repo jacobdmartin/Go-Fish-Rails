@@ -21,7 +21,7 @@ class GoFish
 
   def add_player(player)
     players << player
-    player.count == 6 ? start : false
+    players.count == 6 ? start : false
   end
 
   def empty?
@@ -52,12 +52,6 @@ class GoFish
     end
   end
 
-  def cpu_take_turn
-    rank = current_player.return_rank
-    player = current_player.return_player
-    take_turn(current_player, player, rank)
-  end
-
   def take_turn(asking_player, asked_player, rank)
     if asking_player.no_cards? == true
       advance_player
@@ -67,7 +61,6 @@ class GoFish
     else
       player_go_fish(asking_player, asked_player, rank)
     end
-    return cpu_take_turn if current_player.bot?
   end
 
   # private
@@ -147,9 +140,5 @@ class GoFish
 
   def advance_player
     current_player == players.last ? self.current_player = players[0] : self.current_player = players[players.index(current_player) + 1]
-  end
-
-  def bot?
-    current_player != players[0] ? true : false
   end
 end

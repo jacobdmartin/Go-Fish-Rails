@@ -6,4 +6,9 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
   end
+
+  def create
+    @game_list = []
+    @game_list << @game
+  end
 end

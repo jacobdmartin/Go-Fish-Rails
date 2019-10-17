@@ -4,8 +4,8 @@ body
   = link_to "Create Game", new_game_path, class: "btn btn-yellow"
   / = button_to "Create Game", new_game_path, class: "btn btn-yellow"
   h1 Pending Games
-  / - if @games.count > 0
-  /   @games.each do |game|
+  / - if @game_list&.count > 0
+  /   - @game_list.each do |game|
   /     = game.name
-  /     = button_to "Join"
+    /   = button_to "Join"
     /  = button_to "Join", join_game_path(@game.id)

@@ -7,7 +7,8 @@ RSpec.describe "UsersSignups", type: :request do
       visit '/'
       expect {
         fill_in 'Name', with: ''
-        fill_in 'Password', with: 'evenIfUd0nt'
+        fill_in 'Password', with: 'examplepassword'
+        fill_in 'Password confirmation', with: 'examplepassword'
         click_on 'Sign Up'
       }.not_to change(User, :count)
       # redirect 'users/new'
@@ -19,7 +20,8 @@ RSpec.describe "UsersSignups", type: :request do
       visit '/'
       expect {
         fill_in 'Name', with: 'Example User'
-        fill_in 'Password', with: 'user@example.com'
+        fill_in 'Password', with: 'examplepassword'
+        fill_in 'Password confirmation', with: 'examplepassword'
         click_on 'Sign Up'
       }.to change(User, :count).by(1)
       # follow_redirect!

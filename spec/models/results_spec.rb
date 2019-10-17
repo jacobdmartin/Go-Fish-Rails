@@ -1,5 +1,5 @@
-require_relative 'results'
-require_relative 'player'
+require_relative '../../app/models/results'
+require_relative '../../app/models/player'
 
 RSpec.describe Results, type: :model do
   let(:player_dan) {Player.new("Dan")}
