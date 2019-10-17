@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
 
-  def index 
+  def index
   end
 
-  def new_game
+  def new
+    @game = Game.new
   end
 end
