@@ -1,10 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersLogins", type: :request do
-
-  before do
-    config.include? Capybara::DSL
-  end
+RSpec.describe "UsersLogins", type: :system do
 
   def setup
     @user = users(:michael)
@@ -42,10 +38,10 @@ RSpec.describe "UsersLogins", type: :request do
   #   end
 
     it "login with invalid information" do
-      visit login_path
+      visit :login
       fill_in 'Name', with: ""
       fill_in 'Password', with: ""
-      click_on 'Log In'
+      click_on 'Log in'
     end
   end
 end

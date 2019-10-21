@@ -1,0 +1,65 @@
+section
+  .flex.enter-header
+    p.flex.enter-header-text Spectate Game
+  .flex.flex-row.top-box
+    ul.player-list
+      - game.players.each do |player|
+        li.flex.player__box.player__list--text data-test-id="player-bot1"
+          - if current_player.name == player.name
+            b = "#{player.name} #{player.hand.count}"
+          - else
+            = "#{player.name} #{player.hand.count}"
+    .flex-row
+      p.matches-header = "Matches:"
+      .stats
+        - game.players.each do |player|
+          li.flex.player-stats 
+            = "#{player.name}: #{player.completed_matches.count}"
+        p.deck_stats = "Cards Left In Deck: #{game.card_deck.cards_left}"
+      - if current_player.name == game.current_player.name
+        a.button href="#popup1" Click To Take Turn
+  .result_message
+    - game&.results.each do |message|
+      p = message
+  .flex
+    .your-hand-column
+      p.your-info-header Your Cards
+  .flex
+    .your-hand
+      - current_player.hand.each do |card|
+        img.card_image src="/images/card_faces/#{card.image_name}.jpg" alt="#{card.alt_to_s}"
+  .flex
+    .your-matches-column
+      p.your-info-header Your Matches
+  .flex
+    .your-matches
+      - current_player.completed_matches.each do |card|
+        img.card_image src="/images/card_faces/#{card[0]}H.jpg" alt="#{card.to_s}"
+    div id="popup1" class="overlay"
+      .popup
+        h2 Select The Card & Player 
+        a.close href="#" &times;
+        .content
+          form action="/ask" method="post"
+            p Choose A Card To Ask For
+            - current_player.unique_ranks.each do |rank|
+              .flex.card-item.card-btn data-test-id="card-btn1"
+                input class="card-list-item" id="rank" type="radio" name="rank" value="#{rank}" #{rank}
+            p Choose A Player To Ask
+            - game.players.each do |player|
+              - if game.current_player.name != player.name
+                .flex.player-btn data-test-id="player-btn1"
+                  input class="player-list-item" type="radio" id="player" name="player" value="#{player.name}" #{player.name}
+            button class="ask-btn" type="submit" Ask
+  - if game.match_num == 13
+    div id="winscreen" class="win-overlay"
+      .win-popup
+        h2 Game Scores
+        a.close href="#" &times;
+        .win-content
+          - game.players.each do |player|
+            p "#{player.name} #{player.completed_matches}"
+          form action="/leave" method="post"
+            button class="leave-game-btn" type="submit" Leave Game
+          form action="/new" method="post"
+            button class="enter-game-btn" type="submit" Start New Game

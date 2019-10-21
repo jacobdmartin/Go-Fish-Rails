@@ -139,8 +139,21 @@
 .btn-yellow {
   color: black;
   background: #ffda55;
+  width: 100%;
 }
 
 .btn-lobby {
   align-content: center;
+}
+
+.btn-join {
+  background-color: #553d03;
+  width: 150px;
+  margin-left: 15px;
+}
+
+.btn-spectate {
+  background-color: #ffda55;
+  width: 150px;
+  margin-left: 15px;
 }

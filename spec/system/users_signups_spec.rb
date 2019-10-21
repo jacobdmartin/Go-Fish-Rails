@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersSignups", type: :request do
+RSpec.describe "UsersSignups", type: :system do
   describe "GET /users_signups" do
 
     it 'returns an error because of invalid information' do
