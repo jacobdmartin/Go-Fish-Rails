@@ -28,4 +28,8 @@ class PlayingCard
   def alt_to_s
     "#{rank} of #{suit}"
   end
+
+  def ==(other)
+    rank == other&.rank && suit == other&.suit
+  end
 end

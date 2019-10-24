@@ -53,4 +53,20 @@ RSpec.describe CardDeck, type: :model do
       expect(deck.cards_left).to eq 0
     end
   end
+
+  describe '#==' do
+    let(:king_of_hearts) {PlayingCard.new("King", "Hearts")}
+    let(:ten_of_diamonds) {PlayingCard.new("10", "Diamonds")}
+    let(:deck1) {[ten_of_diamonds, king_of_hearts]}
+    let(:deck2) {[ten_of_diamonds, king_of_hearts]}
+    let(:deck3) {[king_of_hearts]}
+
+    it 'expects the values be equal' do
+      expect(deck1 == deck2).to be true
+    end
+
+    it 'expects the values to not be equal' do
+      expect(deck1 == deck3).to be false
+    end
+  end
 end

@@ -12,6 +12,20 @@ class CardDeck
     provide_deck
   end
 
+  def self.from_json(deck_hash)
+    return nil if deck_hash.empty?
+    deck = CardDeck.new
+    deck.card_deck = [] #this allowed me to have an empty deck to push cards into
+    deck.build_deck(deck_hash)
+  end
+
+  def build_deck(deck_hash)
+    deck_hash["card_deck"].each do |card|
+      self.card_deck << PlayingCard.new(card["rank"], card["suit"])
+    end
+    self
+  end
+
   def shuffle
     self.card_deck = card_deck.shuffle
   end
@@ -39,5 +53,9 @@ class CardDeck
 
   def cards_left
     card_deck.count
+  end
+
+  def ==(other)
+    card_deck == other.card_deck
   end
 end

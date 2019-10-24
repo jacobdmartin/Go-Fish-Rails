@@ -44,4 +44,17 @@ RSpec.describe PlayingCard, type: :model do
       expect(queen_of_hearts.alt_to_s).to eq "Queen of Hearts"
     end
   end
+
+  describe '#==' do
+    let(:king_of_hearts) {PlayingCard.new("King", "Hearts")}
+    let(:ten_of_diamonds) {PlayingCard.new("10", "Diamonds")}
+
+    it 'expects the values be equal' do
+      expect(king_of_hearts.rank == king_of_hearts.rank).to be true
+    end
+
+    it 'expects the values to not be equal' do
+      expect(king_of_hearts.rank == ten_of_diamonds.rank).to be false
+    end
+  end
 end

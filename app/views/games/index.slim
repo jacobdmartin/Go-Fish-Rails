@@ -1,12 +1,11 @@
 body 
   h1 Pending Games
   .flex
-    - Game.all.each do |game|
+    - @games.each do |game|
       .flex-column
         p.flex.game-item = game.name
         .row
-          = link_to "Join", join_path, class: "btn btn-join"
+          = button_to "Join", join_game_path(game.id), class: "btn btn-join"
         .row
-          = link_to "Spectate", spectate_path, class: "btn btn-spectate"
-  h1 Create A Game
+          = button_to "Spectate", spectate_path, class: "btn btn-spectate"
   = link_to "Create Game", new_game_path, class: "btn btn-yellow"

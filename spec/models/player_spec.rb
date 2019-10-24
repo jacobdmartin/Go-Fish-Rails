@@ -62,4 +62,42 @@ RSpec.describe Player, type: :model do
       expect(game.players[0].completed_matches.count).to eq 1
     end
   end
+
+  describe '#from_json' do
+    let(:player_hash) { {"name"=>"Bill", "hand"=>[{"rank"=>"J", "suit"=>"Hearts"}, {"rank"=>"8", "suit"=>"Diamonds"}], "completed_matches"=>["5"]} }
+    
+    before do
+      @inflated_player = Player.from_json(player_hash)
+    end
+    
+    it 'expects the converted ruby hash name to be the same as the players name' do
+      expect(@inflated_player.name).to eq("Bill")
+    end
+
+    it 'expects the converted ruby hash hand to be the same as the players hand' do
+      expected_hand = [PlayingCard.new("J", "Hearts"), PlayingCard.new("8", "Diamonds")]
+      expect(@inflated_player.hand).to eq(expected_hand)
+    end
+
+    it 'expects the converted ruby hash matches to be the same as the players matches' do
+      expected_matches = ["5"]
+      expect(@inflated_player.completed_matches).to eq(expected_matches)
+    end
+  end
+
+  describe '#==' do
+    let(:player1) {Player.new("Mike")}
+    let(:player2) {Player.new("Mike")}
+    let(:player3) {Player.new("Noel")}
+
+    context 'name' do
+      it 'expects the names to be equal' do
+        expect(player1).to eq(player2)
+      end
+
+      it 'expects the names to not be equal' do
+        expect(player1).to_not eq(player3)
+      end
+    end
+  end
 end

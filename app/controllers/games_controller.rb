@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
 
   def index
+    @games = Game.all
   end
 
   def new
@@ -19,7 +20,11 @@ class GamesController < ApplicationController
     end
   end
 
-  def show
+  def join
+    @game = Game.find(params[:id])
+    player = Player.new(current_user.name)
+    game_user = GameUser.new(game: @game, user: current_user)
+    # @game.go_fish.add_player(player)
     render :show
   end
 

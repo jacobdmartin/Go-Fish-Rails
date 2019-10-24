@@ -1,5 +1,6 @@
 require_relative 'player'
 require_relative 'go_fish'
+require 'pry'
 
 class Results
   attr_reader :game
@@ -7,9 +8,9 @@ class Results
 
   def initialize(inquiring_player, inquired_player, rank)
     @player_results = 
-    { take_message: "#{inquiring_player.name} took a #{rank} from #{inquired_player.name}", 
-      go_fish_message: "#{inquiring_player.name} asked for a #{rank} from #{inquired_player.name} but had to Go Fish", 
-      fished_asked_rank_message: "#{inquiring_player.name} fished what #{inquiring_player.name} asked for, take another turn" 
+    { take_message: "#{inquiring_player} took a #{rank} from #{inquired_player}", 
+      go_fish_message: "#{inquiring_player} asked for a #{rank} from #{inquired_player} but had to Go Fish", 
+      fished_asked_rank_message: "#{inquiring_player} fished what #{inquiring_player} asked for, take another turn" 
     }
   end
 end

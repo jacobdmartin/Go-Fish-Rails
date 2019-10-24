@@ -1,22 +1,73 @@
 require_relative 'card_deck'
 require_relative 'player'
-
 require_relative 'results'
+require 'json'
 
 class GoFish
-  attr_accessor :players, :current_player, :started, :cpu_arr, :results, :card_deck, :match_num
+  attr_accessor :players, :current_player, :started, :cpu_arr, :results, :card_deck, :match_num, :name
 
-  def initialize
-    @started = false
-    @card_deck = CardDeck.new
-    @players = []
-    @current_player = nil
-    @results = []
-    @match_num = 0
+  def initialize(name = nil, card_deck: CardDeck.new, players: [], results: [], current_player: nil)
+    @name = name
+    @card_deck = card_deck
+    @players = players
+    @current_player = @players[0]
+    @results = results
   end
 
-  def except_name(cpu_name)
-    players.map().reject {|player| player.name == cpu_name}
+  def self.load(json)
+    return nil if json.blank?
+    values = JSON.parse(json)
+    game = GoFish.new(values["name"])
+    game.game_from_values(values)
+  end
+
+  def self.dump(obj)
+    obj.to_json #to_json works, but as_json doesn't. Why is this?
+  end
+
+  def game_from_values(values)
+    players_to_object(values["players"])
+    results_to_object(values["results"])
+    deck_to_object(values["card_deck"])
+    self.current_player = find_player_by_name(values["current_player"])
+    self
+  end
+
+  def find_player_by_name(name)
+    players.each do |player|
+      return player if player.name == current_player
+    end
+    nil
+  end
+
+  def self.from_json
+    GoFish.new(values["name"])
+  end
+
+  def as_json(options = {})
+    {
+      name: name,
+      card_deck: card_deck,
+      players: players,
+      results: results,
+      current_player: current_player&.name
+    }
+  end
+
+  def players_to_object(players)
+    players.each do |player_hash|
+      add_player(Player.from_json(player_hash))
+    end
+  end
+  
+  def results_to_object(results)
+    results.each do |result|
+      self.results << result
+    end
+  end
+
+  def deck_to_object(deck_hash)
+    self.card_deck = CardDeck.from_json(deck_hash)
   end
 
   def add_player(player)

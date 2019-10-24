@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
+gem 'json'
 gem 'rails', '~> 6.0.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5'
@@ -12,6 +13,7 @@ gem 'slim-rails'
 gem 'bootstrap-sass', '3.3.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'pg'
+gem 'pry'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 

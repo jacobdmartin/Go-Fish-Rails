@@ -85,11 +85,6 @@ RSpec.describe GoFish, type: :model do
       create_and_start_game_with_one_player
       expect(@game1.started).to eq true
     end
-
-    it 'expects that the game hasn\'t started' do
-      game = GoFish.new
-      expect(game.started).to eq false
-    end
   end
 
   describe '#take_turn' do
@@ -237,14 +232,14 @@ RSpec.describe GoFish, type: :model do
         expect(@game1.match_num).to eq 13
       end
 
-      # it 'the card deck has no cards left, so the current player is advanced' do
-      #   create_and_start_game_with_one_player
-      #   @game1.players[0].hand = [five_of_clubs, five_of_diamonds, five_of_hearts]
-      #   @game1.players[1].hand = [five_of_spades, four_of_hearts]
-      #   @game1.card_deck.card_deck = []
-      #   @game1.take_turn(@game1.players[0], @game1.players[1], five_of_clubs.rank)
-      #   expect(@game1.current_player.name).to eq "Aaron"
-      # end
+      it 'the card deck has no cards left, so the current player is advanced' do
+        create_and_start_game_with_one_player
+        @game1.players[0].hand = [five_of_clubs, five_of_diamonds, five_of_hearts]
+        @game1.players[1].hand = [five_of_spades, four_of_hearts]
+        @game1.card_deck.card_deck = []
+        @game1.take_turn(@game1.players[1], @game1.players[0], four_of_hearts.rank)
+        expect(@game1.current_player.name).to eq "Aaron"
+      end
     end
   end
 end

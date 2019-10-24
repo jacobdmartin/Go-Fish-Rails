@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   post   'login',   to: 'sessions#create'
   delete 'logout',  to: 'sessions#destroy'
   post   'signup',  to: 'users#create'
-  get   'join',  to: 'games#show'
-  get   'spectate',  to: 'games#watch'
+  post   'spectate',  to: 'games#watch'
   resources :users
-  resources :games
+  resources :games do
+    member do
+      post 'join'
+    end
+  end
 end

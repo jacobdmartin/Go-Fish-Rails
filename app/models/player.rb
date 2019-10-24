@@ -9,6 +9,22 @@ class Player
     @completed_matches = []
   end
 
+  def self.from_json(player_hash)
+    return nil if player_hash.blank?
+    player = Player.new(player_hash["name"])
+    player.build_player(player_hash)
+  end
+
+  def build_player(player_hash)
+    player_hash["hand"].each do |card_hash|
+      hand << PlayingCard.new(card_hash["rank"], card_hash["suit"])
+    end
+    player_hash["completed_matches"].each do |book|
+      completed_matches << book
+    end
+    self
+  end
+
   def add_cards_to_hand(*cards)
     cards.each {|card| hand << card}
   end
@@ -42,7 +58,17 @@ class Player
     hand.count == 0 ? true : false
   end
 
-  # private
+  def remove_cards_from_hand(asked_rank)
+    rank_arr = hand.select {|card| card.rank == asked_rank}
+    hand.delete_if {|card| card.rank == asked_rank}
+    rank_arr
+  end
+
+  def ==(other)
+    name == other&.name && hand == other.hand
+  end
+  
+  private
 
   def players_rank_number
     number_of_ranks = Hash.new(0)
@@ -55,13 +81,5 @@ class Player
     completed_matches.push(rank)
   end
 
-  def remove_cards_from_hand(asked_rank)
-    rank_arr = hand.select {|card| card.rank == asked_rank}
-    hand.delete_if {|card| card.rank == asked_rank}
-    rank_arr
-  end
 
-  def bot?
-    false
-  end
 end
