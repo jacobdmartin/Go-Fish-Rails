@@ -13,7 +13,7 @@ RSpec.describe "UsersLogins", type: :system do
     end
   end
 
-  describe "GET /users_logins", chrome: true do
+  describe "GET /users_logins" do
     it "login with valid information" do
       visit login_path
       fill_in 'Name', with: jake.name
