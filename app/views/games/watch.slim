@@ -3,7 +3,7 @@ section
     p.flex.enter-header-text Spectate Game
   .flex.flex-row.top-box
     ul.player-list
-      - @game.players.each do |player|
+      - @game.go_fish.players.each do |player|
         li.flex.player__box.player__list--text data-test-id="player-bot1"
           - if current_player.name == player.name
             b = "#{player.name} #{player.hand.count}"
@@ -12,7 +12,7 @@ section
     .flex-row
       p.matches-header = "Matches:"
       .stats
-        - game.players.each do |player|
+        - game.go_fish.players.each do |player|
           li.flex.player-stats 
             = "#{player.name}: #{player.completed_matches.count}"
         p.deck_stats = "Cards Left In Deck: #{game.card_deck.cards_left}"

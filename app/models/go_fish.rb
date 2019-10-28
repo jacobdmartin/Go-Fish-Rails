@@ -4,25 +4,25 @@ require_relative 'results'
 require 'json'
 
 class GoFish
-  attr_accessor :players, :current_player, :started, :cpu_arr, :results, :card_deck, :match_num, :name
+  attr_accessor :players, :current_player, :started, :cpu_arr, :results, :card_deck, :match_num, :name, :player_num
 
-  def initialize(name = nil, card_deck: CardDeck.new, players: [], results: [], current_player: nil)
+  def initialize(name = nil, player_num: nil, card_deck: CardDeck.new, players: [], results: [], current_player: nil)
     @name = name
     @card_deck = card_deck
     @players = players
     @current_player = @players[0]
     @results = results
+    @player_num = player_num.to_i
   end
 
   def self.load(json)
     return nil if json.blank?
-    values = JSON.parse(json)
-    game = GoFish.new(values["name"])
-    game.game_from_values(values)
+    game = GoFish.new(json["name"])
+    game.game_from_values(json)
   end
 
   def self.dump(obj)
-    obj.to_json #to_json works, but as_json doesn't. Why is this?
+    obj.as_json #to_json works, but as_json doesn't. Why is this?
   end
 
   def game_from_values(values)
@@ -30,6 +30,7 @@ class GoFish
     results_to_object(values["results"])
     deck_to_object(values["card_deck"])
     self.current_player = find_player_by_name(values["current_player"])
+    player_num_to_object(values["player_num"])
     self
   end
 
@@ -50,7 +51,8 @@ class GoFish
       card_deck: card_deck,
       players: players,
       results: results,
-      current_player: current_player&.name
+      current_player: current_player&.name,
+      player_num: player_num
     }
   end
 
@@ -68,6 +70,10 @@ class GoFish
 
   def deck_to_object(deck_hash)
     self.card_deck = CardDeck.from_json(deck_hash)
+  end
+
+  def player_num_to_object(player_num_hash)
+    self.player_num = player_num_hash
   end
 
   def add_player(player)

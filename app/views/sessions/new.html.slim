@@ -13,7 +13,7 @@ body
         = f.label :password
         = f.password_field :password, class: 'form-control'
 
-        = f.submit "Log in", class: "btn btn-brown"
+        = f.submit "Log In", class: "btn btn-brown"
 
-      p New user? 
-      a(class="btn btn-yellow" href='signup') Sign up now!
+      p New user?
+      = link_to "Sign up now!", signup_path, class: "btn btn-yellow"

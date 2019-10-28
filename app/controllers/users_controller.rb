@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user, only: [:new, :create]
 
   def show
     @user = User.find(params[:id])
@@ -14,8 +15,8 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to '/games'
-      # redirect_to @user
     else
+      flash[:danger] = "Invalid Input"
       render 'new'
     end
   end

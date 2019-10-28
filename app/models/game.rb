@@ -1,4 +1,5 @@
 class Game < ApplicationRecord
+  attr_accessor :player_num
   serialize :go_fish, GoFish
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
 

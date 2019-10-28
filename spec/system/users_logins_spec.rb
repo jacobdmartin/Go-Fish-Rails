@@ -8,7 +8,7 @@ RSpec.describe "UsersLogins", type: :system do
       visit login_path
       fill_in 'Name', with: ""
       fill_in 'Password', with: ""
-      click_on 'Log in'
+      click_on 'Log In'
       expect(page).to have_current_path(login_path)
     end
   end
@@ -18,7 +18,7 @@ RSpec.describe "UsersLogins", type: :system do
       visit login_path
       fill_in 'Name', with: jake.name
       fill_in 'Password', with: jake.password
-      click_on 'Log in'
+      click_on 'Log In'
       expect(page).to have_current_path(games_path)
     end
   end

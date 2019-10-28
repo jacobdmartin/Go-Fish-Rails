@@ -17,6 +17,7 @@ RSpec.describe Game, type: :model do
   before do
     @go_fish_game = GoFish.new(game.name)
     @go_fish_game.start
+    @go_fish_game.player_num = 2
     @go_fish_game.results = ["Bill took a 8 from Connie", "Bill asked for a 9 from Connie but had to Go Fish"]
     @go_fish_game.card_deck.card_deck = [five_of_diamonds, eight_of_hearts]
     @go_fish_game.players = [bill, connie]
@@ -54,7 +55,13 @@ RSpec.describe Game, type: :model do
     end
     
     describe 'current_player_to_object' do
-      it 'expects the current_player of the GoFish gae to stay the same when loaded from json' do
+      it 'expects the current_player of the GoFish game to stay the same when loaded from json' do
+        expect(@inflated_game.current_player).to eq(@go_fish_game.current_player)
+      end
+    end
+
+    describe 'player_num_to_object' do
+      it 'expects the player_num of the GoFish game to stay the same when loaded from json' do
         expect(@inflated_game.current_player).to eq(@go_fish_game.current_player)
       end
     end
