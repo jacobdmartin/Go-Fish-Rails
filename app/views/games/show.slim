@@ -7,28 +7,29 @@ section
             b = "#{player.name} #{player.hand.count}"
           - else
             = "#{player.name} #{player.hand.count}"
-    .flex-row
-      p.matches-header = "Matches:"
+    .matches-header
+      p = "Matches:"
       .stats
         - @game.go_fish.players.each do |player|
-          li.flex.player-stats 
+          li.flex.player-stats
             = "#{player.name}: #{player.completed_matches.count}"
         p.deck_stats = "Cards Left In Deck: #{@game.go_fish.card_deck.cards_left}"
-      - if current_user.name == current_user.name
-        a.button href="#popup1" Click To Take Turn
+  - if @game.go_fish.started == true
+    - if @session_player.name == @game.go_fish.current_player.name
+      a.button href="#popup1" Click To Take Turn
   .result_message
-    - @game.go_fish&.results.each do |message|
+    - @game.go_fish.results.each do |message|
       p = message
   .flex.your-hand-column
     p.your-info-header Your Cards
-    .flex.your-hand
-      - @game.go_fish.current_player&.hand&.each do |card|
-        img.card_image src="/images/card_faces/#{card.image_name}.jpg" alt="#{card.alt_to_s}"
+  .flex.your-hand
+    - @session_player.hand.each do |card|
+      img.card_image src="/images/card_faces/#{card.image_name}.jpg" alt="#{card.alt_to_s}"
   .flex.your-matches-column
     p.your-info-header Your Matches
-    .flex.your-matches
-      - @game.go_fish.current_player&.completed_matches&.each do |card|
-        img.card_image src="/images/card_faces/#{card[0]}H.jpg" alt="#{card.to_s}"
+  .flex.your-matches
+    - @session_player.completed_matches.each do |card|
+      img.card_image src="/images/card_faces/#{card[0]}H.jpg" alt="#{card.to_s}"
     div id="popup1" class="overlay"
       .popup
         h2 Select The Card & Player 
@@ -36,12 +37,12 @@ section
         .content
           form action="/ask" method="post"
             p Choose A Card To Ask For
-            - @game.go_fish.current_player&.unique_ranks&.each do |rank|
+            - @session_player.unique_ranks&.each do |rank|
               .flex.card-item.card-btn data-test-id="card-btn1"
                 input class="card-list-item" id="rank" type="radio" name="rank" value="#{rank}" #{rank}
             p Choose A Player To Ask
             - @game.go_fish.players.each do |player|
-              - if @game.go_fish.current_player&.name != player.name
+              - if player.name != @session_player.name
                 .flex.player-btn data-test-id="player-btn1"
                   input class="player-list-item" type="radio" id="player" name="player" value="#{player.name}" #{player.name}
             button class="ask-btn" type="submit" Ask
