@@ -62,30 +62,53 @@ container {
 }
 
 .stats {
-  width: 150px;
-  height: 170px;
+  width: 250px;
+  height: 500px;
   background-color: #553d03;
   color: white;
   padding: 10px;
-  padding-top: 20px;
   padding-bottom: 20px;
-  position: relative;
+  position: absolute;
+  right: 0px;
   box-shadow: 4px 4px 4px rgb(34, 34, 34);
 }
 
 .your-hand-column {
-  width: 100%;
+  width: 70%;
   background-color: black;
   justify-content: center;
+  position: absolute;
+  left: 0;
+  bottom: 240;
+}
+
+.your-hand {
+  position: absolute;
+  bottom: 0;
+  height: 239px;
+  width: 70%;
+  left: 0;
+  border: solid black 3px;
+  background: #553d03;
 }
 
 .your-matches-column {
-  width: 100%;
+  width: 30%;
+  position: absolute;
+  right: 0;
+  bottom: 240;
   background-color: white;
 }
 
 .your-matches {
   overflow: scroll;
+  position: absolute;
+  bottom: 0;
+  height: 239px;
+  width: 30%;
+  right: 0;
+  background: #553d03;
+  border: solid black 3px;
 }
 
 .your-no-matches-column {
