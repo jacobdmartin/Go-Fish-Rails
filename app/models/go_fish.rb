@@ -77,8 +77,8 @@ class GoFish
   end
 
   def add_player(player)
-    players << player
-    players.count == 6 ? start : false
+    players.push(player)
+    return start if players.count == player_num
   end
 
   def empty?
@@ -100,13 +100,10 @@ class GoFish
   end
 
   def start
-    if players.count > 1
-      self.started = true
-      card_deck.shuffle
-      deal_count
-      deal
-      self.current_player = players[0]
-    end
+    card_deck.shuffle
+    deal_count
+    deal
+    self.current_player = players[0]
   end
 
   def take_turn(asking_player, asked_player, rank)
