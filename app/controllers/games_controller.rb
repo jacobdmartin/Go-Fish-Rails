@@ -28,9 +28,11 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find(params[:id])
-    player = Player.new(current_user.name)
     game_user = GameUser.create(game: @game, user: current_user)
-    @game.go_fish.add_player(player)
+    game_data = @game.go_fish
+    player = Player.new(current_user.name)
+    game_data.add_player(player)
+    @game.save
     redirect_to game_path(@game)
   end
 
