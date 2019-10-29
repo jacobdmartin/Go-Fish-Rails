@@ -6,13 +6,14 @@ require 'json'
 class GoFish
   attr_accessor :players, :current_player, :started, :cpu_arr, :results, :card_deck, :match_num, :name, :player_num
 
-  def initialize(name = nil, player_num: nil, card_deck: CardDeck.new, players: [], results: [], current_player: nil)
+  def initialize(name = nil, player_num: nil, card_deck: CardDeck.new, players: [], results: [], current_player: nil, started: false)
     @name = name
+    @player_num = player_num.to_i
     @card_deck = card_deck
     @players = players
-    @current_player = @players[0]
     @results = results
-    @player_num = player_num.to_i
+    @current_player = current_player
+    @started = false 
   end
 
   def self.load(json)
@@ -36,7 +37,7 @@ class GoFish
 
   def find_player_by_name(name)
     players.each do |player|
-      return player if player.name == current_player
+      return player if player.name == name
     end
     nil
   end
@@ -51,7 +52,7 @@ class GoFish
       card_deck: card_deck,
       players: players,
       results: results,
-      current_player: current_player&.name,
+      current_player: current_player,
       player_num: player_num
     }
   end
@@ -104,6 +105,7 @@ class GoFish
     deal_count
     deal
     self.current_player = players[0]
+    self.started = true
   end
 
   def take_turn(asking_player, asked_player, rank)
