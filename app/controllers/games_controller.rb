@@ -10,6 +10,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @session_player = @game.go_fish.find_player_by_name(current_user.name)
   end
 
   def create
@@ -17,6 +18,7 @@ class GamesController < ApplicationController
     player = Player.new(current_user.name)
     @game.go_fish = GoFish.new(@game.name, players: [player], player_num: game_params[:player_num])
     if @game.save
+      @session_player = @game.go_fish.find_player_by_name(current_user.name)
       game_user = GameUser.create(game: @game, user: current_user)
       flash[:success] = "Game Successfully Created"
       redirect_to game_path(@game)
@@ -31,6 +33,7 @@ class GamesController < ApplicationController
     game_user = GameUser.create(game: @game, user: current_user)
     game_data = @game.go_fish
     player = Player.new(current_user.name)
+    @session_player = @game.go_fish.find_player_by_name(current_user.name)
     game_data.add_player(player)
     @game.save
     redirect_to game_path(@game)
