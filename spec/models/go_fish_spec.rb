@@ -83,7 +83,7 @@ RSpec.describe GoFish, type: :model do
   describe '#start' do
     it 'expects the game to have started' do
       create_and_start_game_with_one_player
-      expect(@game1.started).to eq true
+      expect(@game1.players[0].hand).to_not be_empty
     end
   end
 
