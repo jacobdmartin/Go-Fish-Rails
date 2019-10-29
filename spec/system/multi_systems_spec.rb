@@ -10,21 +10,13 @@ RSpec.describe 'Game', type: :system do
 
   it 'expects the game to contain 1 GameUser' do
     log_in(user_fred, session1)
-    expect {
-      session1.click_on 'Create Game'
-      session1.fill_in 'Name', with: 'Testing Game'
-      session1.click_on 'Create Game'
-    }.to change(GameUser, :count).by(1)
+    create_game("Test Game", session1)
+    expect(GameUser.count).to eq(1)
   end
 
   it 'expects the game to contain 2 GameUsers' do
     log_in(user_bill, session1)
-    expect { 
-      session1.click_on 'Create Game'
-      session1.fill_in 'Name', with: "Game 455"
-      # session1.click_on 'btn-2-players'
-      session1.click_on 'Create Game'
-    }.to change(GameUser, :count).by(1)
+    create_game("Game 455", session1)
     expect(GameUser.count).to eq(1)
 
     log_in(user_fred, session2)
@@ -32,21 +24,31 @@ RSpec.describe 'Game', type: :system do
     expect(GameUser.count).to eq(2)
   end
 
-  it 'expects the page to display 2 players', :focus do
+  it 'expects the page to display 2 players' do
     log_in(user_bill, session1)
-    session1.click_on 'Create Game'
-    session1.fill_in 'Name', with: "Game 455"
-    session1.click_on 'Create Game'
+    create_game("Game That Has Started", session1)
     expect(session1).to have_css(".player__list--text", count: 1)
     
     log_in(user_fred, session2)
     session2.click_on 'Join'
     expect(session2).to have_css(".player__list--text", count: 2)
-    # session1.expect(refresh).to change(page)
+    # session1.expect(refresh).to change(page) #look up documentation on refreshing a session page
   end
   
-  it 'expects the game to have started because enough people have joined' do
-    
+  it 'expects the game to have started because enough people have joined', :focus do
+    log_in(user_bill, session1)
+    session1.click_on 'Create Game'
+    session1.fill_in 'Name', with: "Game That Has Started"
+    # session1.click_on 'btn-2-players'
+    session1.click_on 'Create Game'
+    @game = Game.find_by(name: "Game That Has Started")
+    game_data = @game.go_fish
+    expect(game_data.players.count).to eq(1)
+
+    log_in(user_fred, session2)
+    session2.click_on 'Join'
+    expect(game_data.players.count).to eq(2)
+    expect(game_data.players.hand).to_not be_empty
   end
   
   it 'expects the end game screen to pop up because the game has finished' do
@@ -62,5 +64,12 @@ RSpec.describe 'Game', type: :system do
     session.fill_in 'Name', with: existing_user.name
     session.fill_in 'Password', with: existing_user.password
     session.click_on 'Log In'
+  end
+
+  def create_game(name, session)
+    session.click_on 'Create Game'
+    session.fill_in 'Name', with: name
+    # session.click_on 'btn-2-players'
+    session.click_on 'Create Game'
   end
 end
