@@ -3,14 +3,30 @@ div id="popup1" class="overlay"
     h2 Select The Card & Player 
     a.close href="#" &times;
     .content
-      form action="/ask" method="post"
-        p Choose A Card To Ask For
-        - @session_player.unique_ranks&.each do |rank|
+      / form action="/ask" method="post"
+      = form_for(@game) do |f|
+        p Choose A Card
+        - @session_player.unique_ranks.each do |rank|
           .flex.card-item.card-btn data-test-id="card-btn1"
-            input class="card-list-item" id="rank" type="radio" name="rank" value="#{rank}" #{rank}
-        p Choose A Player To Ask
+            = f.radio_button :card, rank, class: "card-list-item", hidden: true
+            = f.label :card, "#{rank}", value: rank
+        p Choose A Player
         - @game.go_fish.players.each do |player|
           - if player.name != @session_player.name
             .flex.player-btn data-test-id="player-btn1"
-              input class="player-list-item" type="radio" id="player" name="player" value="#{player.name}" #{player.name}
-        button class="ask-btn" type="submit" Ask
+              = f.radio_button :player, player.name, class: "player-list-item", hidden: true
+              = f.label :player, "#{player.name}", value: player.name
+
+        = f.submit "Ask", class: "ask-btn"
+
+      / form action="/ask" method="post"
+      /   p Choose A Card To Ask For
+      /   - @session_player.unique_ranks&.each do |rank|
+      /     .flex.card-item.card-btn data-test-id="card-btn1"
+      /       input class="card-list-item" id="rank" type="radio" name="rank" value="#{rank}" #{rank}
+      /   p Choose A Player To Ask
+      /   - @game.go_fish.players.each do |player|
+      /     - if player.name != @session_player.name
+      /       .flex.player-btn data-test-id="player-btn1"
+      /         input class="player-list-item" type="radio" id="player" name="player" value="#{player.name}" #{player.name}
+      /   button class="ask-btn" type="submit" Ask
