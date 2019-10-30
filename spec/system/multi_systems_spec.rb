@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe 'Game', type: :system do
-  let(:session1) { Capybara::Session.new(:selenium_chrome, app) }
+  let(:session1) { Capybara::Session.new(:selenium_chrome_headless, app) }
   let(:session2) { Capybara::Session.new(:selenium_chrome_headless, app) }
 
   let(:user_fred) { create(:user, name: 'Fred', password: 'examplepassword')}
