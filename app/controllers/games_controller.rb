@@ -45,6 +45,7 @@ class GamesController < ApplicationController
     @card = turn_params[:hand]
     @player = @game.go_fish.find_player_by_name(turn_params[:players])
     @game.go_fish.take_turn(@session_player, @player, @card)
+    @game.save
     redirect_to game_path(@game)
   end
 
