@@ -1,0 +1,11 @@
+div id="winscreen" class="win-overlay"
+  .win-popup
+    h2 Game Scores
+    a.close href="#" &times;
+    .win-content
+      - @game.go_fish.players.each do |player|
+        p "#{player.name} #{player.completed_matches}"
+      form action="/leave" method="post"
+        button class="leave-game-btn" type="submit" Leave Game
+      form action="/new" method="post"
+        button class="enter-game-btn" type="submit" Start New Game
