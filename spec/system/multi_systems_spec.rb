@@ -35,13 +35,9 @@ RSpec.describe 'Game', type: :system do
     # session1.expect(refresh).to change(page) #look up documentation on refreshing a session page
   end
   
-  it 'expects the game to have started because enough people have joined' do
-    
+  it 'expects the game to have started because two people have joined' do
     log_in(user_bill, session1)
-    session1.click_on 'Create Game'
-    session1.fill_in 'Name', with: "Game That Has Started"
-    session1.choose('2 Players')
-    session1.click_on 'Create Game'
+    create_game("Game That Has Started", session1)
     @game = Game.find_by(name: "Game That Has Started")
     expect(@game.go_fish.players.count).to eq(1)
 
@@ -56,8 +52,11 @@ RSpec.describe 'Game', type: :system do
     log_in(user_bill, session1)
     create_game("Current Player Game", session1)
     @game = Game.find_by(name: "Current Player Game")
-    game_data = @game.go_fish
-    expect(game_data.current_player).to eq(game_data.players[0])
+
+    log_in(user_fred, session2)
+    session2.click_on 'Join'
+    @game.reload
+    expect(@game.go_fish.current_player).to eq(@game.go_fish.players[0])
   end
   
   it 'expects the end game screen to pop up because the game has finished' do
@@ -78,7 +77,7 @@ RSpec.describe 'Game', type: :system do
   def create_game(name, session)
     session.click_on 'Create Game'
     session.fill_in 'Name', with: name
-    # session.click_on 'btn-2-players'
+    session1.choose('2 Players')
     session.click_on 'Create Game'
   end
 end

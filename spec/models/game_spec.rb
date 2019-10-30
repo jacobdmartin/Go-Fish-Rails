@@ -25,6 +25,7 @@ RSpec.describe Game, type: :model do
     @go_fish_game.players[1].hand = [eight_of_hearts]
     @go_fish_game.players[1].completed_matches = ["King"]
     @go_fish_game.take_turn(bill, connie, "8")
+    @go_fish_game.started = true
     game.go_fish = @go_fish_game #serializing the go fish game into json
     @inflated_game = game.go_fish #inflating the go fish game from json
   end
@@ -63,6 +64,12 @@ RSpec.describe Game, type: :model do
     describe 'player_num_to_object' do
       it 'expects the player_num of the GoFish game to stay the same when loaded from json' do
         expect(@inflated_game.current_player).to eq(@go_fish_game.current_player)
+      end
+    end
+
+    describe 'started' do
+      it 'expects the started of the GoFish game to stay the same when loaded from json' do
+        expect(@inflated_game.started).to eq(@go_fish_game.started)
       end
     end
   end
