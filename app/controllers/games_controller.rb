@@ -39,6 +39,15 @@ class GamesController < ApplicationController
     redirect_to game_path(@game)
   end
 
+  def update
+    @game = Game.find(params[:id])
+    @session_player = @game.go_fish.find_player_by_name(current_user.name)
+    @card = turn_params[:hand]
+    @player = @game.go_fish.find_player_by_name(turn_params[:players])
+    @game.go_fish.take_turn(@session_player, @player, @card)
+    redirect_to game_path(@game)
+  end
+
   def watch
     render :watch
   end
@@ -47,5 +56,9 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:name, :player_num)
+  end
+
+  def turn_params
+    params.require(:game).permit(:hand, :players)
   end
 end

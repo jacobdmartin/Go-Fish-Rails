@@ -8,14 +8,14 @@ div id="popup1" class="overlay"
         p Choose A Card
         - @session_player.unique_ranks.each do |rank|
           .flex.card-item.card-btn data-test-id="card-btn1"
-            = f.radio_button :card, rank, class: "card-list-item", hidden: true
-            = f.label :card, "#{rank}", value: rank
+            = f.radio_button :hand, rank, class: "card-list-item", hidden: true
+            = f.label :hand, "#{rank}", value: rank
         p Choose A Player
         - @game.go_fish.players.each do |player|
           - if player.name != @session_player.name
             .flex.player-btn data-test-id="player-btn1"
-              = f.radio_button :player, player.name, class: "player-list-item", hidden: true
-              = f.label :player, "#{player.name}", value: player.name
+              = f.radio_button :players, player.name, class: "player-list-item", hidden: true
+              = f.label :players, "#{player.name}", value: player.name
 
         = f.submit "Ask", class: "ask-btn"
 
