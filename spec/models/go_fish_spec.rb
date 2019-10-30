@@ -61,6 +61,18 @@ RSpec.describe GoFish, type: :model do
     end
   end
 
+  describe 'find_player_by_name' do
+    it 'expects the player object to be returned' do
+      create_and_start_game_with_two_players
+      expect(@game2.find_player_by_name("Moses")).to eq(moses)
+    end
+
+    it "expects the player object to not be returned" do
+      create_and_start_game_with_two_players
+      expect(@game2.find_player_by_name("Bill")).to be nil
+    end
+  end
+
   describe '#deal' do
     it 'deals the deck' do
       create_and_start_game_with_one_player
